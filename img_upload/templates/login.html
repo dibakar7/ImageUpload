@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Log In Page</title>
+        <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    </head>
+    <body>
+        <header>
+        </header>
+        <section id="main-body">
+            <form action="#" method="post" >
+                {% csrf_token %}
+                {% load static %}
+                <div class="login-body">
+                    <h3>Log In</h3>
+                    <label for ='user_name'><b>User Name :  </b></label>
+                    <input type="user_name" placeholder="Enter User name" name="user_name" required ><br>  
+                    <label for='password'><b>Password : </b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required autocomplete="off"><br>  
+                    <button type="submit"><b>Log In</b></button><br>     
+                    Don't have an account <a href="http://localhost:8000/signup/"> Sign up </a> here.
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

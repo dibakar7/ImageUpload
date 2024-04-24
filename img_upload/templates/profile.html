@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Profile Page</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css'%}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <header>
+        </header>
+        <section id='main-body'>
+                    <div class="information-page">
+                        <h3>Personal Details</h3>
+                        <div class="user-information">
+                            <h4>ID: <span> T{{ user_item.id }}</span></h4>
+                            <h4>Name: <span>{{user_item.first_name}} {{user_item.last_name}}</span></h4>
+                            <h4>Email: <span>{{ user_item.email }}</span></h4>
+                            <a href="{% url 'logout' %}" class="btn">Logout</a>
+                        </div>
+                    </div>
+                    <div class="img-box">
+                        <div class="heading">
+                            <h3>Uploaded Images</h3>
+                        </div>
+                        <div class="sheet">
+                            {% if count == 0 %}
+                                <span>You have no course created yet!</span>
+                            {% endif %}
+                            {% for item in uploaded_imgs %}
+                            <div class="images">
+                                <img src="{{ item.img.url }}" alt="image">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="upload_img">
+                        <h3>Upload Image</h3><br>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="image"><b>Image: </b></label>
+                            <input type="file" id="Img" name="Img" action="/upload" accept=".img, .png, .jpeg, .jpg" required>
+                            <button type="submit" class="btn"><b>Upload</b></button><br>
+                        </form>
+                    </div>
+        </section>
